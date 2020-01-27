@@ -70,8 +70,6 @@ if (CLIENT) then
 
 					selected = flashes[rand]
 				end
-
-				chat.AddText("Init flash", tostring(CurTime()), tostring(selected), tostring(last), tostring(rand))
 			end
 
 			local e = pl:GetNetworkedFloat("RCS_flashed_time"); --when it dies away
