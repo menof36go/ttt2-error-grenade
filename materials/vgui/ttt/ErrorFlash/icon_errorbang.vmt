@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "vgui/ttt/ErrorFlash/icon_errorbang"
+	"$translucent" 1
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+}
