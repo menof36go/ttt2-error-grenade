@@ -16,16 +16,16 @@ include("shared.lua")
 
 local function simplifyangle(angle)
 	while(angle>=180) do
-		angle = angle - 360;
+		angle = angle - 360
 	end
 	while(angle <= -180) do
-		angle = angle + 360;
+		angle = angle + 360
 	end
-	return angle;
+	return angle
 end
 
 function ENT:Explode()
-	self.Entity:EmitSound(Sound("weapons/flashbang/flashbang_explode" .. math.random(1,2) .. ".wav"));
+	self.Entity:EmitSound(Sound("weapons/flashbang/flashbang_explode" .. math.random(1,2) .. ".wav"))
 
 	for _,pl in pairs(player.GetAll()) do
 		local ePos = self.Entity:GetPos()
@@ -35,7 +35,7 @@ function ENT:Explode()
 			["endpos"] = ePos,
 			["filter"] = { pl, self },
 		};
-		local tr = util.TraceLine(tracedata);
+		local tr = util.TraceLine(tracedata)
 		local toBang = ePos - eyePos
 		local toBangNormalized = toBang:GetNormalized()
 		local dist = toBang:Length()
@@ -46,18 +46,18 @@ function ENT:Explode()
 			local endtime = (flashIntensity / dist) * turnFactor;
 
 			if (endtime > 6) then
-				endtime = 6;
+				endtime = 6
 			end
 
-			simpendtime = math.floor(endtime);
-			tenthendtime = math.floor((endtime - simpendtime)*10);
+			simpendtime = math.floor(endtime)
+			tenthendtime = math.floor((endtime - simpendtime)*10)
 
-			if (pl:GetNetworkedFloat("RCS_flashed_time") > CurTime()) then --if you're already flashed
-				pl:SetNetworkedFloat("RCS_flashed_time", endtime + pl:GetNetworkedFloat("RCS_flashed_time") + CurTime() - pl:GetNetworkedFloat("RCS_flashed_time_start")); --add more to it
+			if (pl:GetNWFloat("RCS_flashed_time") > CurTime()) then --if you're already flashed
+				pl:GetNWFloat("RCS_flashed_time", endtime + pl:GetNWFloat("RCS_flashed_time") + CurTime() - pl:GetNWFloat("RCS_flashed_time_start")) --add more to it
 			else --not flashed
-				pl:SetNetworkedFloat("RCS_flashed_time", endtime + CurTime());
+				pl:SetNWFloat("RCS_flashed_time", endtime + CurTime())
 			end
-			pl:SetNetworkedFloat("RCS_flashed_time_start", CurTime());
+			pl:SetNWFloat("RCS_flashed_time_start", CurTime())
 		end
 	end
 	self.Entity:Remove();
