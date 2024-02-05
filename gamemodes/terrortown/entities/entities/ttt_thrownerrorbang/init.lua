@@ -28,6 +28,7 @@ function ENT:Explode()
 	self.Entity:EmitSound(Sound("weapons/flashbang/flashbang_explode" .. math.random(1,2) .. ".wav"))
 
 	for _,pl in pairs(player.GetAll()) do
+		if not pl:IsActive() then continue end
 		local ePos = self.Entity:GetPos()
 		local eyePos = pl:EyePos()
 		local tracedata = {
