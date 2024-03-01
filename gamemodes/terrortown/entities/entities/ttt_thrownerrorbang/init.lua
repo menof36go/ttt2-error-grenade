@@ -25,11 +25,11 @@ local function simplifyangle(angle)
 end
 
 function ENT:Explode()
-	self.Entity:EmitSound(Sound("weapons/flashbang/flashbang_explode" .. math.random(1,2) .. ".wav"))
+	self:EmitSound(Sound("weapons/flashbang/flashbang_explode" .. math.random(1,2) .. ".wav"))
 
 	for _,pl in pairs(player.GetAll()) do
 		if not pl:IsActive() then continue end
-		local ePos = self.Entity:GetPos()
+		local ePos = self:GetPos()
 		local eyePos = pl:EyePos()
 		local tracedata = {
 			["start"] = eyePos,
@@ -61,25 +61,25 @@ function ENT:Explode()
 			pl:SetNWFloat("RCS_flashed_time_start", CurTime())
 		end
 	end
-	self.Entity:Remove();
+	self:Remove();
 end
 
 function ENT:Initialize()
-	self.Entity:SetModel("models/weapons/w_eq_flashbang_thrown.mdl")
-	self.Entity:PhysicsInit(SOLID_VPHYSICS)
-	self.Entity:SetMoveType(MOVETYPE_VPHYSICS)
-	self.Entity:SetSolid(SOLID_VPHYSICS)
-	self.Entity:DrawShadow(false)
-	self.Entity:SetCollisionGroup(COLLISION_GROUP_WEAPON)
+	self:SetModel("models/weapons/w_eq_flashbang_thrown.mdl")
+	self:PhysicsInit(SOLID_VPHYSICS)
+	self:SetMoveType(MOVETYPE_VPHYSICS)
+	self:SetSolid(SOLID_VPHYSICS)
+	self:DrawShadow(false)
+	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 
-	local phys = self.Entity:GetPhysicsObject()
+	local phys = self:GetPhysicsObject()
 
 	if (phys:IsValid()) then
 		phys:Wake()
 	end
 
 	timer.Simple(2, function()
-		if self.Entity then
+		if self then
 			self:Explode()
 		end
 	end)
