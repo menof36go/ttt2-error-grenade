@@ -43,7 +43,7 @@ if (CLIENT) then
 	end
 
 	function ENT:Draw()
-		self.Entity:DrawModel()
+		self:DrawModel()
 	end
 
 	function ENT:IsTranslucent()
@@ -122,7 +122,7 @@ end
 
 function ENT:PhysicsCollide(data,phys)
 	if data.Speed > 50 then
-		self.Entity:EmitSound(Sound("weapons/flashbang/grenade_hit1.wav"))
+		self:EmitSound(Sound("weapons/flashbang/grenade_hit1.wav"))
 	end
 
 	local bounce = -data.Speed * data.HitNormal * .1 + (data.OurOldVelocity * -0.6)
