@@ -26,8 +26,8 @@ SWEP.DrawCrosshair = false
 SWEP.IsGrenade = true
 SWEP.NoSights = true
 SWEP.Kind = WEAPON_EQUIP2
-SWEP.CanBuy = { [ROLE_TRAITOR] = ROLE_TRAITOR } -- only traitors can buy
-SWEP.LimitedStock = false
+SWEP.CanBuy = {ROLE_TRAITOR} -- only traitors can buy
+SWEP.LimitedStock = true
 SWEP.Icon = "VGUI/ttt/ErrorFlash/icon_errorbang"
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = -1
