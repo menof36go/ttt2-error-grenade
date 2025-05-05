@@ -78,9 +78,11 @@ function ENT:Initialize()
 		phys:Wake()
 	end
 
+	local ent = self
+
 	timer.Simple(2, function()
-		if self then
-			self:Explode()
+		if IsValid(ent) then
+			ent:Explode()
 		end
 	end)
 end
